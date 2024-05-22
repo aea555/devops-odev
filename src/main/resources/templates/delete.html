@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete Person</title>
+    <style>
+        /* CSS to set image size */
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>Delete Person</h1>
+<form action="#" th:action="@{/delete}" method="post">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Photo</th>
+            <th>Select to Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${ulist}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.address}"></td>
+            <td><img th:src="@{${person.imgUrl}}" alt="Current Image"></td>
+            <td><label>
+                <input type="checkbox" name="selectedIds" th:value="${person.id}">
+            </label></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button type="submit">Delete Selected</button>
+</form>
+</body>
+</html>

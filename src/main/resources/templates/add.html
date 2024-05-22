@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Person</title>
+    <style>
+        /* CSS to set image size */
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Person</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Photo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${ulist}">
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.address}"></td>
+        <td><img th:src="@{${person.imgUrl}}" alt="Current Image"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h2>Add New Person</h2>
+<form action="#" th:action="@{/add}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" maxlength="16" required><br><br>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" maxlength="32" required><br><br>
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>

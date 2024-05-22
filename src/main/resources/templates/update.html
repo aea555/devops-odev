@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Person</title>
+    <style>
+        /* CSS to set image size */
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>Update Person</h1>
+<form action="#" th:action="@{/update}" method="post" enctype="multipart/form-data">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Photo</th>
+            <th>New Name</th>
+            <th>New Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${ulist}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.address}"></td>
+            <td><img th:src="@{${person.imgUrl}}" alt="Current Image"></td>
+            <td><label>
+                <input type="text" name="newNames" th:value="${person.name}" maxlength="16">
+            </label></td>
+            <td><label>
+                <input type="text" name="newAddresses" th:value="${person.address}" maxlength="32">
+            </label></td>
+            <td><input type="file" name="file" accept="image/*"></td>
+            <input type="hidden" name="ids" th:value="${person.id}">
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>

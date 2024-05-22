@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project2Z</title>
+    <style>
+        /* CSS to set image size */
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>User List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>ADDRESS</th>
+        <th>PHOTO</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="u:${ulist}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.address}"></td>
+        <td><img th:src="@{${u.imgUrl}}" alt="Current Image"></td>
+    </tr>
+    <form action="#" th:action="@{/add}" method="get">
+        <button type="submit">Add</button>
+    </form>
+    <form action="#" th:action="@{/delete}" method="get">
+        <button type="submit">Delete</button>
+    </form>
+    <form action="#" th:action="@{/update}" method="get">
+        <button type="submit">Update</button>
+    </form>
+    </tbody>
+</table>
+
+</body>
+</html>
